@@ -27,7 +27,7 @@ public class VehicleMovement : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            //Destroy(gameObject);         
+            Destroy(gameObject);         
         }
     }
 }
