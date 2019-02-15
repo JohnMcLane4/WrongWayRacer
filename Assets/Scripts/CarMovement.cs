@@ -33,6 +33,16 @@ public class CarMovement : MonoBehaviour
         // Turn the car when moving left/right with smartphone rotation via input.acceleration.x...
         //transform.rotation = Quaternion.Euler(0f, ,0f);
     }
+        
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            //Destroy (gameObject);
+            //Transform clone = (Transform)Instantiate(ExplosionEffectPrefab, spawnPoint.position, spawnPoint.rotation);
+            //Destroy(clone.gameObject, 3f);
+        }
+    }
 }
 
 
