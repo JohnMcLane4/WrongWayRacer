@@ -13,13 +13,18 @@ public class Boundaries
 public class CarMovement : MonoBehaviour
 {
     public Boundaries boundaries;
-    public float speed;
+    public float speed;    
 
-    //public float tilt;
-    //private Rigidbody rb;
-
-    float smooth = 5.0f;
+    float smooth = 10.0f;
     float tiltAngle = 40.0f;
+
+    public string engineRunning = "CarEngine";
+    public string crash = "CarCrash";
+    public string tireskid = "Skid"; 
+    AudioManager audioManager;
+
+    public Rigidbody rb;    
+    float horizontalMovement;
 
     Vector3 position;
 
@@ -27,7 +32,15 @@ public class CarMovement : MonoBehaviour
     {
         position = transform.position;
 
-        //rb = GetComponent<Rigidbody>();
+        audioManager = AudioManager.instance;
+        if(audioManager == null)
+        {
+            Debug.Log("No AudioManager found");
+        }
+
+        audioManager.PlaySound(engineRunning);
+
+        rb = GetComponent<Rigidbody>();       
     }
 
     void Update()
@@ -38,20 +51,19 @@ public class CarMovement : MonoBehaviour
 
         transform.position = position;
 
-        // Turn the car when moving left/right with smartphone rotation via input.acceleration.x...
-        //transform.rotation = Quaternion.Euler(0f, ,0f);
-
         float tiltAroundY = Input.GetAxis("Horizontal") * tiltAngle;
 
         Quaternion target = Quaternion.Euler(0, tiltAroundY, 0);
 
         transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
-    }
 
-    void FixedUpdate()
-    {
-        //rb.rotation = Quaternion.Euler(0f, GetComponent<Rigidbody>().velocity.x * -tilt, 0f);
-    }
+        horizontalMovement = rb.velocity.magnitude;
+        if(horizontalMovement > 0.1)
+        {
+            audioManager.PlaySound(tireskid);
+        }
+        Debug.Log(rb.velocity);
+    }        
 
     void OnTriggerEnter(Collider other)
     {
@@ -60,6 +72,8 @@ public class CarMovement : MonoBehaviour
             Destroy (gameObject);
             //Transform clone = (Transform)Instantiate(ExplosionEffectPrefab, spawnPoint.position, spawnPoint.rotation);
             //Destroy(clone.gameObject, 3f);
+
+            audioManager.PlaySound(crash);
         }
     }
 }

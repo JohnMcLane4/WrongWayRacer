@@ -114,8 +114,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0325899, y: 0.022986107, z: 0.07735289}
-  m_Center: {x: 0, y: -0.0009130291, z: 0.00030058622}
+  m_Size: {x: 0.029565096, y: 0.022986107, z: 0.07319539}
+  m_Center: {x: -0.00037810087, y: -0.0009130287, z: 0.0012454473}
 --- !u!114 &114545724702206344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -130,5 +130,8 @@ MonoBehaviour:
   boundaries:
     xMin: -13
     xMax: 13
-  speed: 35
-  tilt: 5
+  speed: 40
+  engineRunning: CarEngine
+  crash: CarCrash
+  tireskid: Skid
+  rb: {fileID: 54854030025328660}
