@@ -90,7 +90,7 @@ public class UIManager : MonoBehaviour {
 
     public void Replay()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1);       
     }
 
     public void Mute()
