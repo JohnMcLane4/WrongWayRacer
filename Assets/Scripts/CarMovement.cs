@@ -74,18 +74,18 @@ public class CarMovement : MonoBehaviour
 
     void Update()
     {
-        
-            position.x += Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+           
+        position.x += Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 
-            position.x = Mathf.Clamp(position.x, boundaries.xMin, boundaries.xMax);
+        position.x = Mathf.Clamp(position.x, boundaries.xMin, boundaries.xMax);
 
-            transform.position = position;
+        transform.position = position;
 
-            float tiltAroundY = Input.GetAxis("Horizontal") * tiltAngle;
+        float tiltAroundY = Input.GetAxis("Horizontal") * tiltAngle;
 
-            Quaternion target = Quaternion.Euler(0, tiltAroundY, 0);
+        Quaternion target = Quaternion.Euler(0, tiltAroundY, 0);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+        transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
         
     }        
 
