@@ -95,6 +95,6 @@ public class UIManager : MonoBehaviour {
 
     public void Mute()
     {
-
+        AudioListener.pause = !AudioListener.pause;
     }
 }

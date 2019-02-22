@@ -31,7 +31,7 @@ public class CarMovement : MonoBehaviour
 
     public Transform explosionPrefab;
 
-    Vector3 position;
+    //Vector3 position;
 
     void Awake()
     {
@@ -40,7 +40,7 @@ public class CarMovement : MonoBehaviour
 
     void Start()
     {
-        position = transform.position;
+        //position = transform.position;
 
         /*audioManager = AudioManager.instance;
         if(audioManager == null)
@@ -68,14 +68,12 @@ public class CarMovement : MonoBehaviour
         if (horizontalMovement < -0.1)
         {
             AudioManagerSimple.instance.PlayOnDemand(tireSkid);
-        }
-        Debug.Log(av.transform.rotation.y);
+        }        
     }
 
     void Update()
-    {
-           
-        position.x += Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+    { 
+        /*position.x += Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 
         position.x = Mathf.Clamp(position.x, boundaries.xMin, boundaries.xMax);
 
@@ -85,9 +83,43 @@ public class CarMovement : MonoBehaviour
 
         Quaternion target = Quaternion.Euler(0, tiltAroundY, 0);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+        transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);*/
+
+        //DetectInput();
+    }
+
+    public void MoveRight()
+    {
+        rb.velocity = new Vector3(speed, 0f, 0f);
+    }
+
+    public void MoveLeft()
+    {
+        rb.velocity = new Vector3(-speed, 0f, 0f);
+    }
+
+    public void MoveStop()
+    {
+        rb.velocity = new Vector3(0f, 0f, 0f);
+    }
+
+   void DetectInput()
+    {
+        float x = Input.GetAxis("Horizontal");
         
-    }        
+        if(x > 0)
+        {
+            MoveRight();
+        }
+        else if(x < 0)
+        {
+            MoveLeft();
+        }
+        else
+        {
+            MoveStop();
+        }        
+    }
 
     public void OnTriggerEnter(Collider other)
     {
