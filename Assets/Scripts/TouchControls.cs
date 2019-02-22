@@ -8,7 +8,7 @@ public class TouchControls : MonoBehaviour {
 
     Rigidbody rb;
     float directionX;
-    float moveSpeed;
+    public float moveSpeed;
 
 	// Use this for initialization
 	void Start ()
@@ -59,12 +59,16 @@ public class TouchControls : MonoBehaviour {
         //          }
         //      }
 
-        directionX = Input.acceleration.x * moveSpeed;
+        directionX = Input.acceleration.x * moveSpeed;     
+        
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -13f, 13f), 0f, 0f);
+                
+        //Debug.Log(Input.acceleration.x);
     }
 
     void FixedUpdate()
-    {
-        rb.velocity = new Vector3(directionX, 0f, 0f);
+    {        
+        rb.velocity = new Vector3(directionX, 0f, 0f);    
+        
     }
 }

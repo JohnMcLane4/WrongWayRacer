@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour {
 
     public TMP_Text scoreText;
     int score;
+    public TMP_Text highScore;
    
     void Start()
     {
@@ -23,6 +24,8 @@ public class UIManager : MonoBehaviour {
 
         score = 0;
         InvokeRepeating("ScoreCounter", 0, 0.5f);
+
+        highScore.text = PlayerPrefs.GetInt("HighScore").ToString();
     }
     // Update is called once per frame
     void Update ()
@@ -30,9 +33,16 @@ public class UIManager : MonoBehaviour {
         scoreText.text = "Score: " + score;
 	}
 
-    void ScoreCounter()
+    public void ScoreCounter()
     {
         score += 1;
+
+        if (score > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+            highScore.text = "Highscore: " + score.ToString();
+        }
+        
     }
 
     void IsPlayerDead()
