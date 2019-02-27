@@ -10,8 +10,12 @@ public class TouchControls : MonoBehaviour {
     float directionX;
     public float moveSpeed;
 
-	// Use this for initialization
-	void Start ()
+    public static bool AccelIsOff = false;
+
+    public GameObject redLine;
+
+    // Use this for initialization
+    void Start ()
     {
         carMovement = GetComponent<CarMovement>();
         rb = GetComponent<Rigidbody>();
@@ -37,7 +41,10 @@ public class TouchControls : MonoBehaviour {
             {
                 carMovement.MoveStop();
             }
+            Debug.DrawLine(Vector3.zero, touchPosition, Color.red);
         }
+
+
 
         //if(Input.touchCount > 0)    //register all touches (max 5)
         //      {
@@ -59,16 +66,43 @@ public class TouchControls : MonoBehaviour {
         //          }
         //      }
 
-        directionX = Input.acceleration.x * moveSpeed;     
         
+    }
+    
+    public void AcceleratorButton()
+    {
+        if (AccelIsOff)
+        {
+            AcceleratorOn();
+        }
+        else
+        {
+            AcceleratorOff();
+        }
+    }
+
+    public void AcceleratorOn()
+    {
+        redLine.SetActive(false);
+        AccelIsOff = false;
+    }
+
+    public void AcceleratorOff()
+    {
+        redLine.SetActive(true);
+        AccelIsOff = true;   
+    }
+
+
+    public void Accelerator()
+    {
+        directionX = Input.acceleration.x * moveSpeed;
+
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -13f, 13f), 0f, 0f);
-                
-        //Debug.Log(Input.acceleration.x);
     }
 
     void FixedUpdate()
     {        
-        rb.velocity = new Vector3(directionX, 0f, 0f);    
-        
+        rb.velocity = new Vector3(directionX, 0f, 0f);       
     }
 }

@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 40
+  redLine: {fileID: 0}
 --- !u!114 &114545724702206344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,7 +144,7 @@ MonoBehaviour:
   boundaries:
     xMin: -13
     xMax: 13
-  speed: 20
+  speed: 50
   tireSkid: {fileID: 8300000, guid: 2438bef13e4916442a5d8fb1e435c5c5, type: 3}
   crash: {fileID: 8300000, guid: 53613bf8c18a40d48927ac6f54a26893, type: 3}
   rb: {fileID: 54854030025328660}
