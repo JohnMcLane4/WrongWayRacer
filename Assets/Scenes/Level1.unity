@@ -3262,7 +3262,7 @@ MonoBehaviour:
   gameOverMenu: {fileID: 1308291088}
   player: {fileID: 1677958772}
   scoreText: {fileID: 1982632003}
-  highScore: {fileID: 10554552}
+  highscore: {fileID: 10554552}
 --- !u!1 &1477304103
 GameObject:
   m_ObjectHideFlags: 0
@@ -3989,7 +3989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2002260981
 RectTransform:
   m_ObjectHideFlags: 0
